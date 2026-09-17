@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SFMC Installed Package Auditor</title><style>
+:root{color-scheme:light;--navy:#102a43;--blue:#0b5cab;--ink:#182230;--muted:#667085;--border:#d9e2ec;--canvas:#f5f8fb}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--canvas)}
+a{color:var(--blue)}.wrap{max-width:960px;margin:0 auto;padding:36px 20px 64px}.hero{display:flex;gap:20px;align-items:center;margin-bottom:28px}.hero img{width:92px;height:92px}
+h1{margin:0 0 8px;color:var(--navy);font-size:34px}.lead{font-size:18px;line-height:1.55;color:#475467;margin:0}.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin:18px 0}
+h2{color:var(--navy);margin:0 0 12px;font-size:22px}h3{color:var(--navy);margin:22px 0 8px;font-size:17px}p,li{line-height:1.6}.nav{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0 26px}.nav a{font-weight:700}
+code{background:#eef3f8;padding:2px 5px;border-radius:5px}.shot{width:100%;max-width:640px;border:1px solid var(--border);border-radius:10px;display:block}
+.notice{border-left:4px solid var(--blue);padding:12px 14px;background:#eef6ff;border-radius:8px}.footer{margin-top:36px;color:var(--muted);font-size:14px}
+</style></head><body><div class="wrap">
+<div class="hero"><img src="assets/store-icon-128x128.png" alt="SFMC Installed Package Auditor icon"><div>
+<h1>SFMC Installed Package Auditor</h1>
+<p class="lead">Inventory Salesforce Marketing Cloud Installed Packages and stage package metadata for automated API/IP attribution and client-secret expiration monitoring.</p>
+</div></div>
+<div class="nav"><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a></div>
+
+<div class="card"><h2>The business challenge</h2>
+<p>Salesforce Marketing Cloud does not provide a supported public REST or SOAP endpoint that returns the complete Installed Package inventory and all of the package metadata needed for this governance workflow, including package identifiers, Client IDs, and client-secret expiration metadata.</p>
+<p>SFMC Installed Package Auditor solves that gap by using the user's existing authenticated SFMC browser session to read first-party package metadata already available to that authorized session. It does not ask users to paste OAuth client secrets into the extension and it does not send package inventory to an external developer service.</p>
+</div>
+
+<div class="card"><h2>What it does</h2>
+<ul>
+<li>Automatically inventories Installed Packages in the current SFMC Business Unit.</li>
+<li>Captures package ID, package name, Client ID, activity metadata, and client-secret expiration metadata when SFMC exposes it.</li>
+<li>Automatically checks for the required staging Data Extension.</li>
+<li>If the DE is missing, loads the user's SFMC Data Extension folder tree and creates the required DE in the folder the user selects.</li>
+<li>After explicit confirmation, upserts package inventory into SFMC using <code>PackageId</code> as the primary key.</li>
+<li>Provides a sanitized local debug export for troubleshooting.</li>
+</ul>
+</div>
+
+<div class="card"><h2>Why stage the data in SFMC?</h2>
+<p>The staged inventory becomes the package metadata layer for downstream Security Event and IP auditing. The intended relationship is:</p>
+<p class="notice"><code>SecurityEvent.employee.userName → AccountUser.UserID → AccountUser.CustomerKey → Installed Package PackageId</code></p>
+<p>This allows API source IPs and authentication activity to be associated with the corresponding Installed Package, Client ID, package name, and secret-expiration date.</p>
+</div>
+
+<div class="card"><h2>Safety model</h2>
+<p>Package discovery, DE detection, schema validation, and folder discovery are read-only. Writes occur only after the user explicitly confirms the action. The write path can create the required Data Extension and upsert package rows. The extension contains no DELETE, ClearData, Data Extension replacement, or stale-row deletion behavior.</p>
+<p>Actual client-secret values are not collected or stored.</p>
+</div>
+
+<div class="card"><h2>Extension preview</h2><img class="shot" src="assets/screenshot-1-640x400.png" alt="SFMC Installed Package Auditor extension interface"></div>
+
+<div class="footer">Independent utility. Not affiliated with, endorsed by, or sponsored by Salesforce.</div>
+</div></body></html>

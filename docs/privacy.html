@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy — SFMC Installed Package Auditor</title><style>
+:root{color-scheme:light;--navy:#102a43;--blue:#0b5cab;--ink:#182230;--muted:#667085;--border:#d9e2ec;--canvas:#f5f8fb}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--canvas)}
+a{color:var(--blue)}.wrap{max-width:960px;margin:0 auto;padding:36px 20px 64px}.hero{display:flex;gap:20px;align-items:center;margin-bottom:28px}.hero img{width:92px;height:92px}
+h1{margin:0 0 8px;color:var(--navy);font-size:34px}.lead{font-size:18px;line-height:1.55;color:#475467;margin:0}.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin:18px 0}
+h2{color:var(--navy);margin:0 0 12px;font-size:22px}h3{color:var(--navy);margin:22px 0 8px;font-size:17px}p,li{line-height:1.6}.nav{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0 26px}.nav a{font-weight:700}
+code{background:#eef3f8;padding:2px 5px;border-radius:5px}.shot{width:100%;max-width:640px;border:1px solid var(--border);border-radius:10px;display:block}
+.notice{border-left:4px solid var(--blue);padding:12px 14px;background:#eef6ff;border-radius:8px}.footer{margin-top:36px;color:var(--muted);font-size:14px}
+</style></head><body><div class="wrap">
+<h1>Privacy Policy</h1>
+<p class="lead">SFMC Installed Package Auditor</p>
+<div class="nav"><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a></div>
+
+<div class="card"><h2>Summary</h2>
+<p>SFMC Installed Package Auditor operates against the Salesforce Marketing Cloud account the user is already signed into. The extension does not operate a developer-controlled backend service and does not send SFMC package inventory, Data Extension content, authentication data, or browsing data to the developer, advertising networks, analytics providers, or data brokers.</p>
+</div>
+
+<div class="card"><h2>Data the extension handles</h2>
+<ul>
+<li><strong>Current SFMC page URL:</strong> used transiently to determine the SFMC tenant/stack needed to call the correct first-party SFMC endpoints.</li>
+<li><strong>SFMC authentication/session information:</strong> existing authenticated session cookies and temporary SFMC tokens are used in memory to make first-party SFMC requests. Tokens are not stored and are excluded from debug output.</li>
+<li><strong>SFMC account metadata:</strong> the extension requests the current SFMC user context to determine the active Business Unit/MID. The underlying SFMC response may contain account-identifying information such as user name, username, and email address; that response body is not written to the staging Data Extension and is not included in exported debug output.</li>
+<li><strong>Installed Package metadata:</strong> package ID, name, description, install metadata, Client ID, activity metadata, and secret-expiration metadata exposed by SFMC.</li>
+<li><strong>Data Extension metadata:</strong> Data Extension existence, schema, and folder/category metadata required to validate or create the staging DE.</li>
+<li><strong>Local diagnostics:</strong> users can explicitly copy or download sanitized diagnostic JSON. These files remain under the user's control unless the user chooses to share them for support.</li>
+</ul>
+</div>
+
+<div class="card"><h2>How data is used</h2>
+<p>Data is used only to provide the extension's single purpose: inventorying SFMC Installed Packages, validating or creating the required SFMC staging Data Extension, and staging package metadata for package/API-IP and client-secret expiration auditing.</p>
+</div>
+
+<div class="card"><h2>Data sharing and transfer</h2>
+<p>The extension communicates only with first-party Salesforce Marketing Cloud <code>exacttarget.com</code> endpoints required for the user-facing feature. It does not transfer user data to the developer or unrelated third parties. Data written by the extension is written into the user's own Salesforce Marketing Cloud tenant after explicit confirmation.</p>
+</div>
+
+<div class="card"><h2>Storage and retention</h2>
+<p>The extension does not maintain a developer-controlled database and does not persist SFMC authentication tokens. Installed Package metadata written to the staging Data Extension remains in the user's SFMC account and is governed by that organization's Salesforce Marketing Cloud configuration and retention practices. Locally downloaded diagnostic files are retained only as long as the user keeps them.</p>
+</div>
+
+<div class="card"><h2>Security</h2>
+<p>Network communications use HTTPS. Actual OAuth client-secret values are not collected or stored. Authentication tokens are used only in memory and are redacted from debug output.</p>
+</div>
+
+<div class="card"><h2>Limited Use</h2>
+<p>Use of user data is limited to providing and improving the extension's disclosed single purpose. User data is not used for advertising, profiling, sale, or unrelated purposes. Humans do not access extension-handled data unless a user intentionally shares specific diagnostic information for support, or access is otherwise required by law or necessary for security.</p>
+</div>
+
+<div class="card"><h2>Changes and support</h2>
+<p>Material changes to these data practices will be reflected in this policy and, where required, in the Chrome Web Store listing or extension UI. For support, use the support page linked from the Chrome Web Store listing.</p>
+</div>
+
+<div class="footer">Independent utility. Not affiliated with, endorsed by, or sponsored by Salesforce.</div>
+</div></body></html>
